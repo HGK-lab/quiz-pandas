@@ -4,3 +4,4 @@ tools/.venv/
 __pycache__/
 *.pdf
 node_modules/
+.omc/

@@ -1,5 +1,5 @@
 // 내용(data, js, css)을 고치면 VERSION을 올린다. 그래야 휴대폰에 새 버전이 반영된다.
-const VERSION = 'v1';
+const VERSION = 'v2';
 const CACHE = `quiz-pandas-${VERSION}`;
 const APP = [
   './', 'index.html', 'css/app.css', 'js/app.js', 'js/quiz.js', 'js/store.js', 'js/render-table.js',
@@ -8,7 +8,7 @@ const APP = [
 ];
 
 self.addEventListener('install', (e) => {
-  e.waitUntil(caches.open(CACHE).then((c) => c.addAll(APP)).then(() => self.skipWaiting()));
+  e.waitUntil(caches.open(CACHE).then((c) => c.addAll(APP.map((u) => new Request(u, { cache: 'reload' })))).then(() => self.skipWaiting()));
 });
 
 self.addEventListener('activate', (e) => {

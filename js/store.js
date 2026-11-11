@@ -33,7 +33,11 @@ function load(st) {
   }
 }
 
-export function createStore(storage = globalThis.localStorage) {
+function defaultStorage() {
+  try { return globalThis.localStorage; } catch { return undefined; }
+}
+
+export function createStore(storage = defaultStorage()) {
   const st = safeStorage(storage);
   let data = load(st);
   const save = () => st.setItem(KEY, JSON.stringify(data));

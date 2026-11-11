@@ -166,7 +166,7 @@ function finishSession() {
     const mine = ch[s.picks[i]];
     const fmt = (c) => (q.type === 'ox' ? c.text : `${NUMS[ch.indexOf(c)]} ${esc(c.text)}`);
     return `<li><div class="line"><span>${i + 1}. ${esc(q.stem)}</span><span class="${results[i] ? 'mark-ok' : 'mark-bad'}">${results[i] ? '정답' : '오답'}</span></div>
-      ${results[i] ? '' : `${q.code ? `<pre class="code">${esc(q.code)}</pre>` : ''}<p class="meta">내 답 ${mine ? fmt(mine) : '없음'} · 정답 ${fmt(right)}</p><div class="explain">${esc(q.explain)}</div>`}</li>`;
+      ${results[i] && s.kind !== 'mock' ? '' : `${q.code && !results[i] ? `<pre class="code">${esc(q.code)}</pre>` : ''}<p class="meta">내 답 ${mine ? fmt(mine) : '없음'} · 정답 ${fmt(right)}</p><div class="explain">${esc(q.explain)}</div>`}</li>`;
   }).join('');
   const head = s.kind === 'mock'
     ? `<h1>모의고사 결과</h1><p class="score">${scoreMock(results).points} / ${s.list.length * POINTS_PER_QUESTION}점</p><p class="sub">${s.list.length}문항 중 ${correct}개 맞음 · 문항당 ${POINTS_PER_QUESTION}점</p>`
@@ -176,9 +176,14 @@ function finishSession() {
     <ul class="list">${items}</ul>
     ${nextUnit}
     <div class="row-btns">
-      ${store.wrongIds().length ? '<a class="btn ghost" href="#/wrong/quiz">틀린 문제 다시 풀기</a>' : ''}
+      ${store.wrongIds().length ? '<button type="button" class="btn ghost" id="retry-wrong">틀린 문제 다시 풀기</button>' : ''}
       <a class="btn ghost" href="#/">단원 목록</a>
     </div>`, s.kind === 'mock' ? 'mock' : s.kind === 'wrong' ? 'wrong' : 'home');
+  document.getElementById('retry-wrong')?.addEventListener('click', () => {
+    // 이미 #/wrong/quiz에 있으면 hashchange가 안 생기므로 직접 다시 시작
+    session = null;
+    if (location.hash === '#/wrong/quiz') route(); else location.hash = '#/wrong/quiz';
+  });
 }
 
 function runSession(key, kind, opts, emptyHTML, tab) {

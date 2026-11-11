@@ -988,7 +988,7 @@
  },
  {
   "id": "dtypes",
-  "code": "df.dtypes",
+  "code": "df['입학일'] = pd.to_datetime(df['입학일'])  # 변환해야 datetime64\ndf.dtypes",
   "before": [
    {
     "name": "df",

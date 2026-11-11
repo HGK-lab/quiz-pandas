@@ -78,3 +78,15 @@ test('reset clears all', () => {
   assert.deepEqual(s.wrongIds(), []);
   assert.deepEqual(createStore(st).wrongIds(), []);
 });
+
+test('works when reading localStorage itself throws', () => {
+  const desc = Object.getOwnPropertyDescriptor(globalThis, 'localStorage');
+  Object.defineProperty(globalThis, 'localStorage', { configurable: true, get() { throw new Error('SecurityError'); } });
+  try {
+    const s = createStore();
+    s.recordAnswer('q1', false);
+    assert.deepEqual(s.wrongIds(), ['q1']);
+  } finally {
+    if (desc) Object.defineProperty(globalThis, 'localStorage', desc); else delete globalThis.localStorage;
+  }
+});

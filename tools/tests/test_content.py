@@ -141,3 +141,23 @@ def test_verify_catches_wrong_expect():
 def test_verify_catches_wrong_answer_index():
     bad = {"id": "x", "type": "mc", "code": "print(1 + 1)", "expect": "2", "choices": ["3", "2", "1", "0"], "answer": 0, "explain": ""}
     assert verify(bad) is not None
+
+
+# --- 최종 검토 반영 ---
+
+def _card(cid):
+    return next(c for c in CARDS if c["id"] == cid)
+
+
+def test_dtypes_date_needs_to_datetime():
+    assert "to_datetime" in " ".join(_card("c2-01")["body"])
+    assert "to_datetime" in next(e for e in EXAMPLES_JSON if e["id"] == "dtypes")["code"]
+
+
+def test_lecture_only_flags_on_astype_errors_and_to_datetime():
+    assert _card("c2-05")["lectureOnly"] and _card("c2-06")["lectureOnly"]
+
+
+def test_concept_questions_cover_definitions_and_suffixes():
+    text = json.dumps(QUESTIONS, ensure_ascii=False)
+    assert "데이터 정제" in text and "suffixes" in text
