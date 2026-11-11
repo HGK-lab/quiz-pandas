@@ -1,0 +1,3023 @@
+[
+ {
+  "id": "isnull_sum",
+  "code": "df.isnull().sum()",
+  "before": [
+   {
+    "name": "df",
+    "columns": [
+     "이름",
+     "나이",
+     "부서"
+    ],
+    "index": [
+     "0",
+     "1",
+     "2"
+    ],
+    "rows": [
+     [
+      "김철수",
+      "28.0",
+      "None"
+     ],
+     [
+      "이영희",
+      "NaN",
+      "영업팀"
+     ],
+     [
+      "박민수",
+      "35.0",
+      "None"
+     ]
+    ],
+    "deleted": [],
+    "changed": [],
+    "deletedCols": [],
+    "changedCols": []
+   }
+  ],
+  "after": {
+   "text": "이름    0\n나이    1\n부서    2"
+  }
+ },
+ {
+  "id": "dropna_any",
+  "code": "df.dropna()",
+  "before": [
+   {
+    "name": "df",
+    "columns": [
+     "기기",
+     "SNS시간",
+     "게임시간"
+    ],
+    "index": [
+     "0",
+     "1",
+     "2",
+     "3"
+    ],
+    "rows": [
+     [
+      "iOS",
+      "30.0",
+      "10.0"
+     ],
+     [
+      "Android",
+      "NaN",
+      "20.0"
+     ],
+     [
+      "None",
+      "60.0",
+      "NaN"
+     ],
+     [
+      "iOS",
+      "90.0",
+      "NaN"
+     ]
+    ],
+    "deleted": [],
+    "changed": [],
+    "deletedCols": [],
+    "changedCols": []
+   }
+  ],
+  "after": {
+   "name": "결과",
+   "columns": [
+    "기기",
+    "SNS시간",
+    "게임시간"
+   ],
+   "index": [
+    "0"
+   ],
+   "rows": [
+    [
+     "iOS",
+     "30.0",
+     "10.0"
+    ]
+   ],
+   "deleted": [
+    "1",
+    "2",
+    "3"
+   ],
+   "changed": [],
+   "deletedCols": [],
+   "changedCols": []
+  }
+ },
+ {
+  "id": "dropna_all_axis1",
+  "code": "df.dropna(axis=1, how='all')",
+  "before": [
+   {
+    "name": "df",
+    "columns": [
+     "기기",
+     "SNS시간",
+     "메모"
+    ],
+    "index": [
+     "0",
+     "1",
+     "2",
+     "3"
+    ],
+    "rows": [
+     [
+      "iOS",
+      "30.0",
+      "None"
+     ],
+     [
+      "Android",
+      "NaN",
+      "None"
+     ],
+     [
+      "None",
+      "60.0",
+      "None"
+     ],
+     [
+      "iOS",
+      "90.0",
+      "None"
+     ]
+    ],
+    "deleted": [],
+    "changed": [],
+    "deletedCols": [],
+    "changedCols": []
+   }
+  ],
+  "after": {
+   "name": "결과",
+   "columns": [
+    "기기",
+    "SNS시간"
+   ],
+   "index": [
+    "0",
+    "1",
+    "2",
+    "3"
+   ],
+   "rows": [
+    [
+     "iOS",
+     "30.0"
+    ],
+    [
+     "Android",
+     "NaN"
+    ],
+    [
+     "None",
+     "60.0"
+    ],
+    [
+     "iOS",
+     "90.0"
+    ]
+   ],
+   "deleted": [],
+   "changed": [],
+   "deletedCols": [
+    "메모"
+   ],
+   "changedCols": []
+  }
+ },
+ {
+  "id": "dropna_subset",
+  "code": "df.dropna(subset=['SNS시간'])",
+  "before": [
+   {
+    "name": "df",
+    "columns": [
+     "기기",
+     "SNS시간",
+     "게임시간"
+    ],
+    "index": [
+     "0",
+     "1",
+     "2",
+     "3"
+    ],
+    "rows": [
+     [
+      "iOS",
+      "30.0",
+      "10.0"
+     ],
+     [
+      "Android",
+      "NaN",
+      "20.0"
+     ],
+     [
+      "None",
+      "60.0",
+      "NaN"
+     ],
+     [
+      "iOS",
+      "90.0",
+      "NaN"
+     ]
+    ],
+    "deleted": [],
+    "changed": [],
+    "deletedCols": [],
+    "changedCols": []
+   }
+  ],
+  "after": {
+   "name": "결과",
+   "columns": [
+    "기기",
+    "SNS시간",
+    "게임시간"
+   ],
+   "index": [
+    "0",
+    "2",
+    "3"
+   ],
+   "rows": [
+    [
+     "iOS",
+     "30.0",
+     "10.0"
+    ],
+    [
+     "None",
+     "60.0",
+     "NaN"
+    ],
+    [
+     "iOS",
+     "90.0",
+     "NaN"
+    ]
+   ],
+   "deleted": [
+    "1"
+   ],
+   "changed": [],
+   "deletedCols": [],
+   "changedCols": []
+  }
+ },
+ {
+  "id": "dropna_thresh",
+  "code": "df.dropna(thresh=2)",
+  "before": [
+   {
+    "name": "df",
+    "columns": [
+     "A",
+     "B",
+     "C"
+    ],
+    "index": [
+     "0",
+     "1",
+     "2",
+     "3"
+    ],
+    "rows": [
+     [
+      "10.0",
+      "NaN",
+      "1.0"
+     ],
+     [
+      "NaN",
+      "20.0",
+      "2.0"
+     ],
+     [
+      "30.0",
+      "30.0",
+      "NaN"
+     ],
+     [
+      "NaN",
+      "40.0",
+      "NaN"
+     ]
+    ],
+    "deleted": [],
+    "changed": [],
+    "deletedCols": [],
+    "changedCols": []
+   }
+  ],
+  "after": {
+   "name": "결과",
+   "columns": [
+    "A",
+    "B",
+    "C"
+   ],
+   "index": [
+    "0",
+    "1",
+    "2"
+   ],
+   "rows": [
+    [
+     "10.0",
+     "NaN",
+     "1.0"
+    ],
+    [
+     "NaN",
+     "20.0",
+     "2.0"
+    ],
+    [
+     "30.0",
+     "30.0",
+     "NaN"
+    ]
+   ],
+   "deleted": [
+    "3"
+   ],
+   "changed": [],
+   "deletedCols": [],
+   "changedCols": []
+  }
+ },
+ {
+  "id": "fillna_zero",
+  "code": "df.fillna(0)",
+  "before": [
+   {
+    "name": "df",
+    "columns": [
+     "A",
+     "B"
+    ],
+    "index": [
+     "0",
+     "1",
+     "2",
+     "3",
+     "4"
+    ],
+    "rows": [
+     [
+      "1.0",
+      "NaN"
+     ],
+     [
+      "NaN",
+      "2.0"
+     ],
+     [
+      "3.0",
+      "NaN"
+     ],
+     [
+      "NaN",
+      "4.0"
+     ],
+     [
+      "5.0",
+      "NaN"
+     ]
+    ],
+    "deleted": [],
+    "changed": [],
+    "deletedCols": [],
+    "changedCols": []
+   }
+  ],
+  "after": {
+   "name": "결과",
+   "columns": [
+    "A",
+    "B"
+   ],
+   "index": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "rows": [
+    [
+     "1.0",
+     "0.0"
+    ],
+    [
+     "0.0",
+     "2.0"
+    ],
+    [
+     "3.0",
+     "0.0"
+    ],
+    [
+     "0.0",
+     "4.0"
+    ],
+    [
+     "5.0",
+     "0.0"
+    ]
+   ],
+   "deleted": [],
+   "changed": [
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     2,
+     1
+    ],
+    [
+     3,
+     0
+    ],
+    [
+     4,
+     1
+    ]
+   ],
+   "deletedCols": [],
+   "changedCols": []
+  }
+ },
+ {
+  "id": "fillna_dict",
+  "code": "df.fillna(value={'A': df['A'].mean(), 'B': df['B'].min()})",
+  "before": [
+   {
+    "name": "df",
+    "columns": [
+     "A",
+     "B"
+    ],
+    "index": [
+     "0",
+     "1",
+     "2",
+     "3",
+     "4"
+    ],
+    "rows": [
+     [
+      "1.0",
+      "NaN"
+     ],
+     [
+      "NaN",
+      "2.0"
+     ],
+     [
+      "3.0",
+      "NaN"
+     ],
+     [
+      "NaN",
+      "4.0"
+     ],
+     [
+      "5.0",
+      "NaN"
+     ]
+    ],
+    "deleted": [],
+    "changed": [],
+    "deletedCols": [],
+    "changedCols": []
+   }
+  ],
+  "after": {
+   "name": "결과",
+   "columns": [
+    "A",
+    "B"
+   ],
+   "index": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "rows": [
+    [
+     "1.0",
+     "2.0"
+    ],
+    [
+     "3.0",
+     "2.0"
+    ],
+    [
+     "3.0",
+     "2.0"
+    ],
+    [
+     "3.0",
+     "4.0"
+    ],
+    [
+     "5.0",
+     "2.0"
+    ]
+   ],
+   "deleted": [],
+   "changed": [
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     2,
+     1
+    ],
+    [
+     3,
+     0
+    ],
+    [
+     4,
+     1
+    ]
+   ],
+   "deletedCols": [],
+   "changedCols": []
+  }
+ },
+ {
+  "id": "fillna_dict_limit",
+  "code": "df.fillna(value={'A': df['A'].mean(), 'B': df['B'].min()}, limit=1)",
+  "before": [
+   {
+    "name": "df",
+    "columns": [
+     "A",
+     "B"
+    ],
+    "index": [
+     "0",
+     "1",
+     "2",
+     "3",
+     "4"
+    ],
+    "rows": [
+     [
+      "1.0",
+      "NaN"
+     ],
+     [
+      "NaN",
+      "2.0"
+     ],
+     [
+      "3.0",
+      "NaN"
+     ],
+     [
+      "NaN",
+      "4.0"
+     ],
+     [
+      "5.0",
+      "NaN"
+     ]
+    ],
+    "deleted": [],
+    "changed": [],
+    "deletedCols": [],
+    "changedCols": []
+   }
+  ],
+  "after": {
+   "name": "결과",
+   "columns": [
+    "A",
+    "B"
+   ],
+   "index": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "rows": [
+    [
+     "1.0",
+     "2.0"
+    ],
+    [
+     "3.0",
+     "2.0"
+    ],
+    [
+     "3.0",
+     "NaN"
+    ],
+    [
+     "NaN",
+     "4.0"
+    ],
+    [
+     "5.0",
+     "NaN"
+    ]
+   ],
+   "deleted": [],
+   "changed": [
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     0
+    ]
+   ],
+   "deletedCols": [],
+   "changedCols": []
+  }
+ },
+ {
+  "id": "fillna_str",
+  "code": "df['기기'] = df['기기'].fillna('Unknown')",
+  "before": [
+   {
+    "name": "df",
+    "columns": [
+     "기기",
+     "SNS시간",
+     "게임시간"
+    ],
+    "index": [
+     "0",
+     "1",
+     "2",
+     "3"
+    ],
+    "rows": [
+     [
+      "iOS",
+      "30.0",
+      "10.0"
+     ],
+     [
+      "Android",
+      "NaN",
+      "20.0"
+     ],
+     [
+      "None",
+      "60.0",
+      "NaN"
+     ],
+     [
+      "iOS",
+      "90.0",
+      "NaN"
+     ]
+    ],
+    "deleted": [],
+    "changed": [],
+    "deletedCols": [],
+    "changedCols": []
+   }
+  ],
+  "after": {
+   "name": "결과",
+   "columns": [
+    "기기",
+    "SNS시간",
+    "게임시간"
+   ],
+   "index": [
+    "0",
+    "1",
+    "2",
+    "3"
+   ],
+   "rows": [
+    [
+     "iOS",
+     "30.0",
+     "10.0"
+    ],
+    [
+     "Android",
+     "NaN",
+     "20.0"
+    ],
+    [
+     "Unknown",
+     "60.0",
+     "NaN"
+    ],
+    [
+     "iOS",
+     "90.0",
+     "NaN"
+    ]
+   ],
+   "deleted": [],
+   "changed": [
+    [
+     2,
+     0
+    ]
+   ],
+   "deletedCols": [],
+   "changedCols": []
+  }
+ },
+ {
+  "id": "drop_columns",
+  "code": "df.drop(columns=['게임시간'])",
+  "before": [
+   {
+    "name": "df",
+    "columns": [
+     "기기",
+     "SNS시간",
+     "게임시간"
+    ],
+    "index": [
+     "0",
+     "1",
+     "2",
+     "3"
+    ],
+    "rows": [
+     [
+      "iOS",
+      "30.0",
+      "10.0"
+     ],
+     [
+      "Android",
+      "NaN",
+      "20.0"
+     ],
+     [
+      "None",
+      "60.0",
+      "NaN"
+     ],
+     [
+      "iOS",
+      "90.0",
+      "NaN"
+     ]
+    ],
+    "deleted": [],
+    "changed": [],
+    "deletedCols": [],
+    "changedCols": []
+   }
+  ],
+  "after": {
+   "name": "결과",
+   "columns": [
+    "기기",
+    "SNS시간"
+   ],
+   "index": [
+    "0",
+    "1",
+    "2",
+    "3"
+   ],
+   "rows": [
+    [
+     "iOS",
+     "30.0"
+    ],
+    [
+     "Android",
+     "NaN"
+    ],
+    [
+     "None",
+     "60.0"
+    ],
+    [
+     "iOS",
+     "90.0"
+    ]
+   ],
+   "deleted": [],
+   "changed": [],
+   "deletedCols": [
+    "게임시간"
+   ],
+   "changedCols": []
+  }
+ },
+ {
+  "id": "astype_int",
+  "code": "df['SNS시간'] = df['SNS시간'].fillna(0).astype(int)",
+  "before": [
+   {
+    "name": "df",
+    "columns": [
+     "SNS시간"
+    ],
+    "index": [
+     "0",
+     "1",
+     "2"
+    ],
+    "rows": [
+     [
+      "30.0"
+     ],
+     [
+      "NaN"
+     ],
+     [
+      "60.0"
+     ]
+    ],
+    "deleted": [],
+    "changed": [],
+    "deletedCols": [],
+    "changedCols": []
+   }
+  ],
+  "after": {
+   "name": "결과",
+   "columns": [
+    "SNS시간"
+   ],
+   "index": [
+    "0",
+    "1",
+    "2"
+   ],
+   "rows": [
+    [
+     "30"
+    ],
+    [
+     "0"
+    ],
+    [
+     "60"
+    ]
+   ],
+   "deleted": [],
+   "changed": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     2,
+     0
+    ]
+   ],
+   "deletedCols": [],
+   "changedCols": []
+  }
+ },
+ {
+  "id": "to_datetime_coerce",
+  "code": "df['입학일'] = pd.to_datetime(df['입학일'], errors='coerce')",
+  "before": [
+   {
+    "name": "df",
+    "columns": [
+     "입학일"
+    ],
+    "index": [
+     "0",
+     "1",
+     "2",
+     "3"
+    ],
+    "rows": [
+     [
+      "2022-02-23"
+     ],
+     [
+      "2023-02-25"
+     ],
+     [
+      "2025-02-24"
+     ],
+     [
+      "잘못된값"
+     ]
+    ],
+    "deleted": [],
+    "changed": [],
+    "deletedCols": [],
+    "changedCols": []
+   }
+  ],
+  "after": {
+   "name": "결과",
+   "columns": [
+    "입학일"
+   ],
+   "index": [
+    "0",
+    "1",
+    "2",
+    "3"
+   ],
+   "rows": [
+    [
+     "2022-02-23"
+    ],
+    [
+     "2023-02-25"
+    ],
+    [
+     "2025-02-24"
+    ],
+    [
+     "NaT"
+    ]
+   ],
+   "deleted": [],
+   "changed": [
+    [
+     3,
+     0
+    ]
+   ],
+   "deletedCols": [],
+   "changedCols": []
+  }
+ },
+ {
+  "id": "dtypes",
+  "code": "df.dtypes",
+  "before": [
+   {
+    "name": "df",
+    "columns": [
+     "이름",
+     "나이",
+     "SNS시간",
+     "입학일"
+    ],
+    "index": [
+     "0",
+     "1"
+    ],
+    "rows": [
+     [
+      "김철수",
+      "28",
+      "30.5",
+      "2022-02-23"
+     ],
+     [
+      "이영희",
+      "31",
+      "NaN",
+      "2023-02-25"
+     ]
+    ],
+    "deleted": [],
+    "changed": [],
+    "deletedCols": [],
+    "changedCols": []
+   }
+  ],
+  "after": {
+   "text": "이름               object\n나이                int64\nSNS시간           float64\n입학일      datetime64[ns]"
+  }
+ },
+ {
+  "id": "rename_columns",
+  "code": "df.rename(columns={'게임시간': 'Game시간'})",
+  "before": [
+   {
+    "name": "df",
+    "columns": [
+     "게임시간",
+     "SNS시간"
+    ],
+    "index": [
+     "0",
+     "1"
+    ],
+    "rows": [
+     [
+      "10",
+      "30"
+     ],
+     [
+      "20",
+      "60"
+     ]
+    ],
+    "deleted": [],
+    "changed": [],
+    "deletedCols": [],
+    "changedCols": []
+   }
+  ],
+  "after": {
+   "name": "결과",
+   "columns": [
+    "Game시간",
+    "SNS시간"
+   ],
+   "index": [
+    "0",
+    "1"
+   ],
+   "rows": [
+    [
+     "10",
+     "30"
+    ],
+    [
+     "20",
+     "60"
+    ]
+   ],
+   "deleted": [],
+   "changed": [],
+   "deletedCols": [
+    "게임시간"
+   ],
+   "changedCols": [
+    0
+   ]
+  }
+ },
+ {
+  "id": "loc_assign",
+  "code": "df['AI사용시간'] = 'Low'\ndf.loc[df['학습시간'] >= 100, 'AI사용시간'] = 'High'",
+  "before": [
+   {
+    "name": "df",
+    "columns": [
+     "학습시간"
+    ],
+    "index": [
+     "0",
+     "1",
+     "2",
+     "3"
+    ],
+    "rows": [
+     [
+      "120"
+     ],
+     [
+      "80"
+     ],
+     [
+      "100"
+     ],
+     [
+      "45"
+     ]
+    ],
+    "deleted": [],
+    "changed": [],
+    "deletedCols": [],
+    "changedCols": []
+   }
+  ],
+  "after": {
+   "name": "결과",
+   "columns": [
+    "학습시간",
+    "AI사용시간"
+   ],
+   "index": [
+    "0",
+    "1",
+    "2",
+    "3"
+   ],
+   "rows": [
+    [
+     "120",
+     "High"
+    ],
+    [
+     "80",
+     "Low"
+    ],
+    [
+     "100",
+     "High"
+    ],
+    [
+     "45",
+     "Low"
+    ]
+   ],
+   "deleted": [],
+   "changed": [
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     2,
+     1
+    ],
+    [
+     3,
+     1
+    ]
+   ],
+   "deletedCols": [],
+   "changedCols": [
+    1
+   ]
+  }
+ },
+ {
+  "id": "sort_desc",
+  "code": "df.sort_values(by='수면시간', ascending=False)",
+  "before": [
+   {
+    "name": "df",
+    "columns": [
+     "수면시간",
+     "SNS시간"
+    ],
+    "index": [
+     "0",
+     "1",
+     "2",
+     "3"
+    ],
+    "rows": [
+     [
+      "7",
+      "60"
+     ],
+     [
+      "5",
+      "90"
+     ],
+     [
+      "8",
+      "30"
+     ],
+     [
+      "6",
+      "90"
+     ]
+    ],
+    "deleted": [],
+    "changed": [],
+    "deletedCols": [],
+    "changedCols": []
+   }
+  ],
+  "after": {
+   "name": "결과",
+   "columns": [
+    "수면시간",
+    "SNS시간"
+   ],
+   "index": [
+    "2",
+    "0",
+    "3",
+    "1"
+   ],
+   "rows": [
+    [
+     "8",
+     "30"
+    ],
+    [
+     "7",
+     "60"
+    ],
+    [
+     "6",
+     "90"
+    ],
+    [
+     "5",
+     "90"
+    ]
+   ],
+   "deleted": [],
+   "changed": [],
+   "deletedCols": [],
+   "changedCols": []
+  }
+ },
+ {
+  "id": "sort_multi",
+  "code": "df.sort_values(by=['수면시간', 'SNS시간'], ascending=[True, False])",
+  "before": [
+   {
+    "name": "df",
+    "columns": [
+     "수면시간",
+     "SNS시간"
+    ],
+    "index": [
+     "0",
+     "1",
+     "2",
+     "3"
+    ],
+    "rows": [
+     [
+      "7",
+      "30"
+     ],
+     [
+      "6",
+      "90"
+     ],
+     [
+      "7",
+      "60"
+     ],
+     [
+      "6",
+      "40"
+     ]
+    ],
+    "deleted": [],
+    "changed": [],
+    "deletedCols": [],
+    "changedCols": []
+   }
+  ],
+  "after": {
+   "name": "결과",
+   "columns": [
+    "수면시간",
+    "SNS시간"
+   ],
+   "index": [
+    "1",
+    "3",
+    "2",
+    "0"
+   ],
+   "rows": [
+    [
+     "6",
+     "90"
+    ],
+    [
+     "6",
+     "40"
+    ],
+    [
+     "7",
+     "60"
+    ],
+    [
+     "7",
+     "30"
+    ]
+   ],
+   "deleted": [],
+   "changed": [],
+   "deletedCols": [],
+   "changedCols": []
+  }
+ },
+ {
+  "id": "dup_default",
+  "code": "df.drop_duplicates()",
+  "before": [
+   {
+    "name": "df",
+    "columns": [
+     "ID",
+     "점수"
+    ],
+    "index": [
+     "0",
+     "1",
+     "2",
+     "3",
+     "4"
+    ],
+    "rows": [
+     [
+      "1",
+      "70"
+     ],
+     [
+      "2",
+      "85"
+     ],
+     [
+      "2",
+      "85"
+     ],
+     [
+      "3",
+      "60"
+     ],
+     [
+      "3",
+      "95"
+     ]
+    ],
+    "deleted": [],
+    "changed": [],
+    "deletedCols": [],
+    "changedCols": []
+   }
+  ],
+  "after": {
+   "name": "결과",
+   "columns": [
+    "ID",
+    "점수"
+   ],
+   "index": [
+    "0",
+    "1",
+    "3",
+    "4"
+   ],
+   "rows": [
+    [
+     "1",
+     "70"
+    ],
+    [
+     "2",
+     "85"
+    ],
+    [
+     "3",
+     "60"
+    ],
+    [
+     "3",
+     "95"
+    ]
+   ],
+   "deleted": [
+    "2"
+   ],
+   "changed": [],
+   "deletedCols": [],
+   "changedCols": []
+  }
+ },
+ {
+  "id": "dup_subset_first",
+  "code": "df.drop_duplicates(subset='ID', keep='first')",
+  "before": [
+   {
+    "name": "df",
+    "columns": [
+     "ID",
+     "점수"
+    ],
+    "index": [
+     "0",
+     "1",
+     "2",
+     "3",
+     "4"
+    ],
+    "rows": [
+     [
+      "1",
+      "70"
+     ],
+     [
+      "2",
+      "85"
+     ],
+     [
+      "2",
+      "85"
+     ],
+     [
+      "3",
+      "60"
+     ],
+     [
+      "3",
+      "95"
+     ]
+    ],
+    "deleted": [],
+    "changed": [],
+    "deletedCols": [],
+    "changedCols": []
+   }
+  ],
+  "after": {
+   "name": "결과",
+   "columns": [
+    "ID",
+    "점수"
+   ],
+   "index": [
+    "0",
+    "1",
+    "3"
+   ],
+   "rows": [
+    [
+     "1",
+     "70"
+    ],
+    [
+     "2",
+     "85"
+    ],
+    [
+     "3",
+     "60"
+    ]
+   ],
+   "deleted": [
+    "2",
+    "4"
+   ],
+   "changed": [],
+   "deletedCols": [],
+   "changedCols": []
+  }
+ },
+ {
+  "id": "dup_keep_last",
+  "code": "df.drop_duplicates(subset='ID', keep='last')",
+  "before": [
+   {
+    "name": "df",
+    "columns": [
+     "ID",
+     "점수"
+    ],
+    "index": [
+     "0",
+     "1",
+     "2",
+     "3",
+     "4"
+    ],
+    "rows": [
+     [
+      "1",
+      "70"
+     ],
+     [
+      "2",
+      "85"
+     ],
+     [
+      "2",
+      "85"
+     ],
+     [
+      "3",
+      "60"
+     ],
+     [
+      "3",
+      "95"
+     ]
+    ],
+    "deleted": [],
+    "changed": [],
+    "deletedCols": [],
+    "changedCols": []
+   }
+  ],
+  "after": {
+   "name": "결과",
+   "columns": [
+    "ID",
+    "점수"
+   ],
+   "index": [
+    "0",
+    "2",
+    "4"
+   ],
+   "rows": [
+    [
+     "1",
+     "70"
+    ],
+    [
+     "2",
+     "85"
+    ],
+    [
+     "3",
+     "95"
+    ]
+   ],
+   "deleted": [
+    "1",
+    "3"
+   ],
+   "changed": [],
+   "deletedCols": [],
+   "changedCols": []
+  }
+ },
+ {
+  "id": "outlier_filter",
+  "code": "df[df['Age'] < 60]",
+  "before": [
+   {
+    "name": "df",
+    "columns": [
+     "ID",
+     "Age"
+    ],
+    "index": [
+     "0",
+     "1",
+     "2",
+     "3",
+     "4"
+    ],
+    "rows": [
+     [
+      "1",
+      "25"
+     ],
+     [
+      "2",
+      "30"
+     ],
+     [
+      "3",
+      "45"
+     ],
+     [
+      "4",
+      "100"
+     ],
+     [
+      "5",
+      "28"
+     ]
+    ],
+    "deleted": [],
+    "changed": [],
+    "deletedCols": [],
+    "changedCols": []
+   }
+  ],
+  "after": {
+   "name": "결과",
+   "columns": [
+    "ID",
+    "Age"
+   ],
+   "index": [
+    "0",
+    "1",
+    "2",
+    "4"
+   ],
+   "rows": [
+    [
+     "1",
+     "25"
+    ],
+    [
+     "2",
+     "30"
+    ],
+    [
+     "3",
+     "45"
+    ],
+    [
+     "5",
+     "28"
+    ]
+   ],
+   "deleted": [
+    "3"
+   ],
+   "changed": [],
+   "deletedCols": [],
+   "changedCols": []
+  }
+ },
+ {
+  "id": "outlier_median",
+  "code": "median_age = df['Age'].median()\ndf.loc[df['Age'] >= 60, 'Age'] = median_age",
+  "before": [
+   {
+    "name": "df",
+    "columns": [
+     "ID",
+     "Age"
+    ],
+    "index": [
+     "0",
+     "1",
+     "2",
+     "3",
+     "4"
+    ],
+    "rows": [
+     [
+      "1",
+      "25"
+     ],
+     [
+      "2",
+      "30"
+     ],
+     [
+      "3",
+      "45"
+     ],
+     [
+      "4",
+      "100"
+     ],
+     [
+      "5",
+      "28"
+     ]
+    ],
+    "deleted": [],
+    "changed": [],
+    "deletedCols": [],
+    "changedCols": []
+   }
+  ],
+  "after": {
+   "name": "결과",
+   "columns": [
+    "ID",
+    "Age"
+   ],
+   "index": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "rows": [
+    [
+     "1",
+     "25"
+    ],
+    [
+     "2",
+     "30"
+    ],
+    [
+     "3",
+     "45"
+    ],
+    [
+     "4",
+     "30"
+    ],
+    [
+     "5",
+     "28"
+    ]
+   ],
+   "deleted": [],
+   "changed": [
+    [
+     3,
+     1
+    ]
+   ],
+   "deletedCols": [],
+   "changedCols": []
+  }
+ },
+ {
+  "id": "str_strip",
+  "code": "df['Name'] = df['Name'].str.strip()",
+  "before": [
+   {
+    "name": "df",
+    "columns": [
+     "Name"
+    ],
+    "index": [
+     "0",
+     "1",
+     "2",
+     "3",
+     "4"
+    ],
+    "rows": [
+     [
+      "' Alice '"
+     ],
+     [
+      "'Bob'"
+     ],
+     [
+      "' Charlie '"
+     ],
+     [
+      "'David '"
+     ],
+     [
+      "' Emma'"
+     ]
+    ],
+    "deleted": [],
+    "changed": [],
+    "deletedCols": [],
+    "changedCols": []
+   }
+  ],
+  "after": {
+   "name": "결과",
+   "columns": [
+    "Name"
+   ],
+   "index": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "rows": [
+    [
+     "'Alice'"
+    ],
+    [
+     "'Bob'"
+    ],
+    [
+     "'Charlie'"
+    ],
+    [
+     "'David'"
+    ],
+    [
+     "'Emma'"
+    ]
+   ],
+   "deleted": [],
+   "changed": [
+    [
+     0,
+     0
+    ],
+    [
+     2,
+     0
+    ],
+    [
+     3,
+     0
+    ],
+    [
+     4,
+     0
+    ]
+   ],
+   "deletedCols": [],
+   "changedCols": []
+  }
+ },
+ {
+  "id": "str_replace_name",
+  "code": "df['Name'] = df['Name'].str.replace('Alice', 'Alicia')",
+  "before": [
+   {
+    "name": "df",
+    "columns": [
+     "Name"
+    ],
+    "index": [
+     "0",
+     "1",
+     "2",
+     "3",
+     "4"
+    ],
+    "rows": [
+     [
+      "' Alice '"
+     ],
+     [
+      "'Bob'"
+     ],
+     [
+      "' Charlie '"
+     ],
+     [
+      "'David '"
+     ],
+     [
+      "' Emma'"
+     ]
+    ],
+    "deleted": [],
+    "changed": [],
+    "deletedCols": [],
+    "changedCols": []
+   }
+  ],
+  "after": {
+   "name": "결과",
+   "columns": [
+    "Name"
+   ],
+   "index": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "rows": [
+    [
+     "' Alicia '"
+    ],
+    [
+     "'Bob'"
+    ],
+    [
+     "' Charlie '"
+    ],
+    [
+     "'David '"
+    ],
+    [
+     "' Emma'"
+    ]
+   ],
+   "deleted": [],
+   "changed": [
+    [
+     0,
+     0
+    ]
+   ],
+   "deletedCols": [],
+   "changedCols": []
+  }
+ },
+ {
+  "id": "str_upper",
+  "code": "df['Name'] = df['Name'].str.upper()",
+  "before": [
+   {
+    "name": "df",
+    "columns": [
+     "Name"
+    ],
+    "index": [
+     "0",
+     "1",
+     "2",
+     "3",
+     "4"
+    ],
+    "rows": [
+     [
+      "' Alice '"
+     ],
+     [
+      "'Bob'"
+     ],
+     [
+      "' Charlie '"
+     ],
+     [
+      "'David '"
+     ],
+     [
+      "' Emma'"
+     ]
+    ],
+    "deleted": [],
+    "changed": [],
+    "deletedCols": [],
+    "changedCols": []
+   }
+  ],
+  "after": {
+   "name": "결과",
+   "columns": [
+    "Name"
+   ],
+   "index": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "rows": [
+    [
+     "' ALICE '"
+    ],
+    [
+     "'BOB'"
+    ],
+    [
+     "' CHARLIE '"
+    ],
+    [
+     "'DAVID '"
+    ],
+    [
+     "' EMMA'"
+    ]
+   ],
+   "deleted": [],
+   "changed": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     2,
+     0
+    ],
+    [
+     3,
+     0
+    ],
+    [
+     4,
+     0
+    ]
+   ],
+   "deletedCols": [],
+   "changedCols": []
+  }
+ },
+ {
+  "id": "str_symbols",
+  "code": "df['experience'] = df['experience'].str.replace('>', '').str.replace('<', '').astype(int)",
+  "before": [
+   {
+    "name": "df",
+    "columns": [
+     "experience"
+    ],
+    "index": [
+     "0",
+     "1",
+     "2",
+     "3"
+    ],
+    "rows": [
+     [
+      "5"
+     ],
+     [
+      ">10"
+     ],
+     [
+      "<20"
+     ],
+     [
+      "17"
+     ]
+    ],
+    "deleted": [],
+    "changed": [],
+    "deletedCols": [],
+    "changedCols": []
+   }
+  ],
+  "after": {
+   "name": "결과",
+   "columns": [
+    "experience"
+   ],
+   "index": [
+    "0",
+    "1",
+    "2",
+    "3"
+   ],
+   "rows": [
+    [
+     "5"
+    ],
+    [
+     "10"
+    ],
+    [
+     "20"
+    ],
+    [
+     "17"
+    ]
+   ],
+   "deleted": [],
+   "changed": [
+    [
+     1,
+     0
+    ],
+    [
+     2,
+     0
+    ]
+   ],
+   "deletedCols": [],
+   "changedCols": []
+  }
+ },
+ {
+  "id": "str_comma",
+  "code": "df['salary'] = df['salary'].str.replace(',', '').astype(int)",
+  "before": [
+   {
+    "name": "df",
+    "columns": [
+     "salary"
+    ],
+    "index": [
+     "0",
+     "1",
+     "2"
+    ],
+    "rows": [
+     [
+      "600,000"
+     ],
+     [
+      "750,000"
+     ],
+     [
+      "1,000,000"
+     ]
+    ],
+    "deleted": [],
+    "changed": [],
+    "deletedCols": [],
+    "changedCols": []
+   }
+  ],
+  "after": {
+   "name": "결과",
+   "columns": [
+    "salary"
+   ],
+   "index": [
+    "0",
+    "1",
+    "2"
+   ],
+   "rows": [
+    [
+     "600000"
+    ],
+    [
+     "750000"
+    ],
+    [
+     "1000000"
+    ]
+   ],
+   "deleted": [],
+   "changed": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     2,
+     0
+    ]
+   ],
+   "deletedCols": [],
+   "changedCols": []
+  }
+ },
+ {
+  "id": "str_percent",
+  "code": "df['growth_rate'] = df['growth_rate'].str.replace('%', '').astype(float) / 100",
+  "before": [
+   {
+    "name": "df",
+    "columns": [
+     "growth_rate"
+    ],
+    "index": [
+     "0",
+     "1",
+     "2"
+    ],
+    "rows": [
+     [
+      "50%"
+     ],
+     [
+      "75%"
+     ],
+     [
+      "100%"
+     ]
+    ],
+    "deleted": [],
+    "changed": [],
+    "deletedCols": [],
+    "changedCols": []
+   }
+  ],
+  "after": {
+   "name": "결과",
+   "columns": [
+    "growth_rate"
+   ],
+   "index": [
+    "0",
+    "1",
+    "2"
+   ],
+   "rows": [
+    [
+     "0.5"
+    ],
+    [
+     "0.75"
+    ],
+    [
+     "1.0"
+    ]
+   ],
+   "deleted": [],
+   "changed": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     2,
+     0
+    ]
+   ],
+   "deletedCols": [],
+   "changedCols": []
+  }
+ },
+ {
+  "id": "concat_rows",
+  "code": "pd.concat([df1, df2], axis=0, ignore_index=True)",
+  "before": [
+   {
+    "name": "df1",
+    "columns": [
+     "ID",
+     "Name",
+     "Age"
+    ],
+    "index": [
+     "0",
+     "1",
+     "2"
+    ],
+    "rows": [
+     [
+      "1",
+      "Alice",
+      "25"
+     ],
+     [
+      "2",
+      "Bob",
+      "30"
+     ],
+     [
+      "3",
+      "Charlie",
+      "35"
+     ]
+    ],
+    "deleted": [],
+    "changed": [],
+    "deletedCols": [],
+    "changedCols": []
+   },
+   {
+    "name": "df2",
+    "columns": [
+     "ID",
+     "Name",
+     "City"
+    ],
+    "index": [
+     "0",
+     "1"
+    ],
+    "rows": [
+     [
+      "4",
+      "David",
+      "New York"
+     ],
+     [
+      "5",
+      "Emma",
+      "Los Angeles"
+     ]
+    ],
+    "deleted": [],
+    "changed": [],
+    "deletedCols": [],
+    "changedCols": []
+   }
+  ],
+  "after": {
+   "name": "결과",
+   "columns": [
+    "ID",
+    "Name",
+    "Age",
+    "City"
+   ],
+   "index": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "rows": [
+    [
+     "1",
+     "Alice",
+     "25.0",
+     "NaN"
+    ],
+    [
+     "2",
+     "Bob",
+     "30.0",
+     "NaN"
+    ],
+    [
+     "3",
+     "Charlie",
+     "35.0",
+     "NaN"
+    ],
+    [
+     "4",
+     "David",
+     "NaN",
+     "New York"
+    ],
+    [
+     "5",
+     "Emma",
+     "NaN",
+     "Los Angeles"
+    ]
+   ],
+   "deleted": [],
+   "changed": [
+    [
+     0,
+     3
+    ],
+    [
+     1,
+     3
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     3,
+     2
+    ],
+    [
+     4,
+     2
+    ]
+   ],
+   "deletedCols": [],
+   "changedCols": []
+  }
+ },
+ {
+  "id": "concat_cols",
+  "code": "pd.concat([df1, df2], axis=1)",
+  "before": [
+   {
+    "name": "df1",
+    "columns": [
+     "ID",
+     "Name",
+     "Age"
+    ],
+    "index": [
+     "0",
+     "1",
+     "2"
+    ],
+    "rows": [
+     [
+      "1",
+      "Alice",
+      "25"
+     ],
+     [
+      "2",
+      "Bob",
+      "30"
+     ],
+     [
+      "3",
+      "Charlie",
+      "35"
+     ]
+    ],
+    "deleted": [],
+    "changed": [],
+    "deletedCols": [],
+    "changedCols": []
+   },
+   {
+    "name": "df2",
+    "columns": [
+     "ID",
+     "Name",
+     "City"
+    ],
+    "index": [
+     "0",
+     "1"
+    ],
+    "rows": [
+     [
+      "4",
+      "David",
+      "New York"
+     ],
+     [
+      "5",
+      "Emma",
+      "Los Angeles"
+     ]
+    ],
+    "deleted": [],
+    "changed": [],
+    "deletedCols": [],
+    "changedCols": []
+   }
+  ],
+  "after": {
+   "name": "결과",
+   "columns": [
+    "ID",
+    "Name",
+    "Age",
+    "ID",
+    "Name",
+    "City"
+   ],
+   "index": [
+    "0",
+    "1",
+    "2"
+   ],
+   "rows": [
+    [
+     "1",
+     "Alice",
+     "25",
+     "4.0",
+     "David",
+     "New York"
+    ],
+    [
+     "2",
+     "Bob",
+     "30",
+     "5.0",
+     "Emma",
+     "Los Angeles"
+    ],
+    [
+     "3",
+     "Charlie",
+     "35",
+     "NaN",
+     "NaN",
+     "NaN"
+    ]
+   ],
+   "deleted": [],
+   "changed": [
+    [
+     2,
+     3
+    ],
+    [
+     2,
+     4
+    ],
+    [
+     2,
+     5
+    ]
+   ],
+   "deletedCols": [],
+   "changedCols": []
+  }
+ },
+ {
+  "id": "concat_inner",
+  "code": "pd.concat([df1, df2], axis=0, join='inner', ignore_index=True)",
+  "before": [
+   {
+    "name": "df1",
+    "columns": [
+     "ID",
+     "Name",
+     "Age"
+    ],
+    "index": [
+     "0",
+     "1",
+     "2"
+    ],
+    "rows": [
+     [
+      "1",
+      "Alice",
+      "25"
+     ],
+     [
+      "2",
+      "Bob",
+      "30"
+     ],
+     [
+      "3",
+      "Charlie",
+      "35"
+     ]
+    ],
+    "deleted": [],
+    "changed": [],
+    "deletedCols": [],
+    "changedCols": []
+   },
+   {
+    "name": "df2",
+    "columns": [
+     "ID",
+     "Name",
+     "City"
+    ],
+    "index": [
+     "0",
+     "1"
+    ],
+    "rows": [
+     [
+      "4",
+      "David",
+      "New York"
+     ],
+     [
+      "5",
+      "Emma",
+      "Los Angeles"
+     ]
+    ],
+    "deleted": [],
+    "changed": [],
+    "deletedCols": [],
+    "changedCols": []
+   }
+  ],
+  "after": {
+   "name": "결과",
+   "columns": [
+    "ID",
+    "Name"
+   ],
+   "index": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "rows": [
+    [
+     "1",
+     "Alice"
+    ],
+    [
+     "2",
+     "Bob"
+    ],
+    [
+     "3",
+     "Charlie"
+    ],
+    [
+     "4",
+     "David"
+    ],
+    [
+     "5",
+     "Emma"
+    ]
+   ],
+   "deleted": [],
+   "changed": [],
+   "deletedCols": [],
+   "changedCols": []
+  }
+ },
+ {
+  "id": "merge_inner",
+  "code": "pd.merge(df1, df2, on='ID', how='inner')",
+  "before": [
+   {
+    "name": "df1",
+    "columns": [
+     "ID",
+     "Name"
+    ],
+    "index": [
+     "0",
+     "1",
+     "2"
+    ],
+    "rows": [
+     [
+      "1",
+      "Alice"
+     ],
+     [
+      "2",
+      "Bob"
+     ],
+     [
+      "3",
+      "Charlie"
+     ]
+    ],
+    "deleted": [],
+    "changed": [],
+    "deletedCols": [],
+    "changedCols": []
+   },
+   {
+    "name": "df2",
+    "columns": [
+     "ID",
+     "Score"
+    ],
+    "index": [
+     "0",
+     "1",
+     "2"
+    ],
+    "rows": [
+     [
+      "1",
+      "85"
+     ],
+     [
+      "2",
+      "90"
+     ],
+     [
+      "4",
+      "95"
+     ]
+    ],
+    "deleted": [],
+    "changed": [],
+    "deletedCols": [],
+    "changedCols": []
+   }
+  ],
+  "after": {
+   "name": "결과",
+   "columns": [
+    "ID",
+    "Name",
+    "Score"
+   ],
+   "index": [
+    "0",
+    "1"
+   ],
+   "rows": [
+    [
+     "1",
+     "Alice",
+     "85"
+    ],
+    [
+     "2",
+     "Bob",
+     "90"
+    ]
+   ],
+   "deleted": [],
+   "changed": [],
+   "deletedCols": [],
+   "changedCols": []
+  }
+ },
+ {
+  "id": "merge_outer",
+  "code": "pd.merge(df1, df2, on='ID', how='outer')",
+  "before": [
+   {
+    "name": "df1",
+    "columns": [
+     "ID",
+     "Name"
+    ],
+    "index": [
+     "0",
+     "1",
+     "2"
+    ],
+    "rows": [
+     [
+      "1",
+      "Alice"
+     ],
+     [
+      "2",
+      "Bob"
+     ],
+     [
+      "3",
+      "Charlie"
+     ]
+    ],
+    "deleted": [],
+    "changed": [],
+    "deletedCols": [],
+    "changedCols": []
+   },
+   {
+    "name": "df2",
+    "columns": [
+     "ID",
+     "Score"
+    ],
+    "index": [
+     "0",
+     "1",
+     "2"
+    ],
+    "rows": [
+     [
+      "1",
+      "85"
+     ],
+     [
+      "2",
+      "90"
+     ],
+     [
+      "4",
+      "95"
+     ]
+    ],
+    "deleted": [],
+    "changed": [],
+    "deletedCols": [],
+    "changedCols": []
+   }
+  ],
+  "after": {
+   "name": "결과",
+   "columns": [
+    "ID",
+    "Name",
+    "Score"
+   ],
+   "index": [
+    "0",
+    "1",
+    "2",
+    "3"
+   ],
+   "rows": [
+    [
+     "1",
+     "Alice",
+     "85.0"
+    ],
+    [
+     "2",
+     "Bob",
+     "90.0"
+    ],
+    [
+     "3",
+     "Charlie",
+     "NaN"
+    ],
+    [
+     "4",
+     "NaN",
+     "95.0"
+    ]
+   ],
+   "deleted": [],
+   "changed": [
+    [
+     2,
+     2
+    ],
+    [
+     3,
+     1
+    ]
+   ],
+   "deletedCols": [],
+   "changedCols": []
+  }
+ },
+ {
+  "id": "merge_left",
+  "code": "pd.merge(df1, df2, on='ID', how='left')",
+  "before": [
+   {
+    "name": "df1",
+    "columns": [
+     "ID",
+     "Name"
+    ],
+    "index": [
+     "0",
+     "1",
+     "2"
+    ],
+    "rows": [
+     [
+      "1",
+      "Alice"
+     ],
+     [
+      "2",
+      "Bob"
+     ],
+     [
+      "3",
+      "Charlie"
+     ]
+    ],
+    "deleted": [],
+    "changed": [],
+    "deletedCols": [],
+    "changedCols": []
+   },
+   {
+    "name": "df2",
+    "columns": [
+     "ID",
+     "Score"
+    ],
+    "index": [
+     "0",
+     "1",
+     "2"
+    ],
+    "rows": [
+     [
+      "1",
+      "85"
+     ],
+     [
+      "2",
+      "90"
+     ],
+     [
+      "4",
+      "95"
+     ]
+    ],
+    "deleted": [],
+    "changed": [],
+    "deletedCols": [],
+    "changedCols": []
+   }
+  ],
+  "after": {
+   "name": "결과",
+   "columns": [
+    "ID",
+    "Name",
+    "Score"
+   ],
+   "index": [
+    "0",
+    "1",
+    "2"
+   ],
+   "rows": [
+    [
+     "1",
+     "Alice",
+     "85.0"
+    ],
+    [
+     "2",
+     "Bob",
+     "90.0"
+    ],
+    [
+     "3",
+     "Charlie",
+     "NaN"
+    ]
+   ],
+   "deleted": [],
+   "changed": [
+    [
+     2,
+     2
+    ]
+   ],
+   "deletedCols": [],
+   "changedCols": []
+  }
+ },
+ {
+  "id": "merge_right",
+  "code": "pd.merge(df1, df2, on='ID', how='right')",
+  "before": [
+   {
+    "name": "df1",
+    "columns": [
+     "ID",
+     "Name"
+    ],
+    "index": [
+     "0",
+     "1",
+     "2"
+    ],
+    "rows": [
+     [
+      "1",
+      "Alice"
+     ],
+     [
+      "2",
+      "Bob"
+     ],
+     [
+      "3",
+      "Charlie"
+     ]
+    ],
+    "deleted": [],
+    "changed": [],
+    "deletedCols": [],
+    "changedCols": []
+   },
+   {
+    "name": "df2",
+    "columns": [
+     "ID",
+     "Score"
+    ],
+    "index": [
+     "0",
+     "1",
+     "2"
+    ],
+    "rows": [
+     [
+      "1",
+      "85"
+     ],
+     [
+      "2",
+      "90"
+     ],
+     [
+      "4",
+      "95"
+     ]
+    ],
+    "deleted": [],
+    "changed": [],
+    "deletedCols": [],
+    "changedCols": []
+   }
+  ],
+  "after": {
+   "name": "결과",
+   "columns": [
+    "ID",
+    "Name",
+    "Score"
+   ],
+   "index": [
+    "0",
+    "1",
+    "2"
+   ],
+   "rows": [
+    [
+     "1",
+     "Alice",
+     "85"
+    ],
+    [
+     "2",
+     "Bob",
+     "90"
+    ],
+    [
+     "4",
+     "NaN",
+     "95"
+    ]
+   ],
+   "deleted": [],
+   "changed": [
+    [
+     2,
+     1
+    ]
+   ],
+   "deletedCols": [],
+   "changedCols": []
+  }
+ }
+]
