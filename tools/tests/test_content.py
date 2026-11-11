@@ -61,3 +61,35 @@ def test_changed_cells_in_range():
         if "rows" in a:
             for r, c in a["changed"]:
                 assert r < len(a["rows"]) and c < len(a["columns"]), e["id"]
+
+
+# --- Task 2: 개념 카드 ---
+
+def test_units_are_five_in_order():
+    assert [u["no"] for u in UNITS] == [1, 2, 3, 4, 5]
+
+
+def test_cards_per_unit_8_to_12():
+    for u in range(1, 6):
+        assert 8 <= sum(c["unit"] == u for c in CARDS) <= 12, u
+
+
+def test_card_ids_unique():
+    ids = [c["id"] for c in CARDS]
+    assert len(ids) == len(set(ids))
+
+
+def test_card_example_ids_exist():
+    ids = {e["id"] for e in EXAMPLES_JSON}
+    assert all(c["exampleId"] in ids for c in CARDS if c["exampleId"])
+
+
+def test_every_example_used_by_a_card():
+    used = {c["exampleId"] for c in CARDS}
+    assert {e["id"] for e in EXAMPLES_JSON} <= used, sorted({e["id"] for e in EXAMPLES_JSON} - used)
+
+
+def test_traps_present():
+    text = json.dumps(CARDS, ensure_ascii=False)
+    for k in ["astype", "copy=False", "limit", "inplace", "NaT", "dtypes"]:
+        assert k in text, k
