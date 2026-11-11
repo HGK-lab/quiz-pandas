@@ -93,3 +93,51 @@ def test_traps_present():
     text = json.dumps(CARDS, ensure_ascii=False)
     for k in ["astype", "copy=False", "limit", "inplace", "NaT", "dtypes"]:
         assert k in text, k
+
+
+# --- Task 3: 문제은행 ---
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from verify import verify  # noqa: E402
+
+PLAN = {1: (4, 6), 2: (2, 3), 3: (2, 4), 4: (3, 4), 5: (2, 5)}
+
+
+def test_question_counts():
+    assert len(QUESTIONS) == 35
+    for u, (ox, mc) in PLAN.items():
+        assert sum(q["unit"] == u and q["type"] == "ox" for q in QUESTIONS) == ox, u
+        assert sum(q["unit"] == u and q["type"] == "mc" for q in QUESTIONS) == mc, u
+
+
+def test_mc_has_four_distinct_choices():
+    for q in QUESTIONS:
+        if q["type"] == "mc":
+            assert len(set(q["choices"])) == 4 and q["answer"] in range(4), q["id"]
+        else:
+            assert isinstance(q["answer"], bool) and "choices" not in q, q["id"]
+
+
+def test_code_questions_verify():
+    assert [e for q in QUESTIONS if (e := verify(q))] == []
+
+
+def test_no_banned_topics():
+    for q in QUESTIONS:
+        assert "copy=False" not in q["stem"] + (q["code"] or ""), q["id"]
+        if q["type"] == "ox":
+            assert "limit" not in q["stem"], q["id"]
+
+
+def test_ids_unique():
+    assert len({q["id"] for q in QUESTIONS}) == 35
+
+
+def test_verify_catches_wrong_expect():
+    bad = {"id": "x", "type": "mc", "code": "print(1 + 1)", "expect": "3", "choices": ["3", "2", "1", "0"], "answer": 0, "explain": ""}
+    assert verify(bad) is not None
+
+
+def test_verify_catches_wrong_answer_index():
+    bad = {"id": "x", "type": "mc", "code": "print(1 + 1)", "expect": "2", "choices": ["3", "2", "1", "0"], "answer": 0, "explain": ""}
+    assert verify(bad) is not None
